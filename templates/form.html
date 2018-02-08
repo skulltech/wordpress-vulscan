@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico"/>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/static/styles/floating-labels.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>WPVULSCAN</title>
+  </head>
+
+  <body>
+
+    <form class="form-searchdata" id="form">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="/static/images/yellow-pages.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">WPVULSCAN</h1>
+        <p>Scan Wordpress Vulnerabilities using <a href="https://wpscan.org/">WPScan</a></p>
+      </div>
+      
+      <div class="form-label-group">
+        <input type="text" id="url" name="url" class="form-control" placeholder="URL" required autofocus>
+        <label for="term">URL</label>
+      </div>
+
+      <button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      <div id="loading" class="text-center invisible"><img src="static/images/Rolling-40px.svg"></div>
+      <p class="mt-5 mb-3 text-muted text-center">Made with &hearts; by <a href="https://github.com/SkullTech/wpvulscan">SkullTech</a></p>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JS plugins and code -->
+    <script src="/static/scripts/jquery.serialize-object.min.js"></script>
+    <script src="/static/scripts/main.js"></script>
+  </body>
+</html>
