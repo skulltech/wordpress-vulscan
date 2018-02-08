@@ -1,4 +1,5 @@
-from wpvulnscan import wpscan
+from wpvulscan import wpscan
+import requests
 from rq import Queue
 from rq.job import Job
 from worker import conn
@@ -11,6 +12,7 @@ q = Queue(connection=conn)
 
 
 def githubify(text):
+    text = '```console\n' + text + '```\n'    
     r = requests.post('https://api.github.com/markdown/raw', data=text, headers={'Content-Type': 'text/x-markdown'})
     return r.text
 
@@ -56,7 +58,7 @@ def get_status(task_id):
 def result(task_id):
     task = q.fetch_job(task_id)
     url = task.result.splitlines()[0][9:]
-    return render_template('result.html', results=[{'url': url, 'content': task.result}])
+    return render_template('result.html', results=[{'url': url, 'content': githubify(task.result)}])
 
 
 

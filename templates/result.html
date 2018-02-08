@@ -2,8 +2,8 @@
     <title>WPVULSCAN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="static/styles/frameworks.css">
-    <link rel="stylesheet" href="static/styles/github.css">
+    <link rel="stylesheet" href="/static/styles/frameworks.css">
+    <link rel="stylesheet" href="/static/styles/github.css">
     <style>
     /* Page tweaks */
     .preview-page {
@@ -31,7 +31,7 @@
             <div class="container new-discussion-timeline experiment-repo-nav">
                 <div class="repository-content">
                     {% for result in results %}
-                    <div id="{{ entry['shortdate'] }}" class="readme boxed-group clearfix announce instapaper_body md">
+                    <div id="{{ result['url'] }}" class="readme boxed-group clearfix announce instapaper_body md">
                         <h3>
                             <span class="octicon octicon-book"></span>
                             {{ result['url'] }}
