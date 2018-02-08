@@ -10,6 +10,11 @@ app = Flask(__name__)
 q = Queue(connection=conn)
 
 
+def githubify(text):
+    r = requests.post('https://api.github.com/markdown/raw', data=text, headers={'Content-Type': 'text/x-markdown'})
+    return r.text
+
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('form.html')
@@ -45,10 +50,13 @@ def get_status(task_id):
     return jsonify(response)
 
 
+
+
 @app.route('/results/<task_id>', methods=['GET'])
 def result(task_id):
     task = q.fetch_job(task_id)
-    return render_template('result.html', result=task.result)
+    url = task.result.splitlines()[0][9:]
+    return render_template('result.html', results=[{'url': url, 'content': task.result}])
 
 
 
