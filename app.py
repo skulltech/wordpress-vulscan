@@ -1,5 +1,6 @@
 from wpvulscan import wpscan
 import requests
+import re
 from rq import Queue
 from rq.job import Job
 from worker import conn
@@ -15,6 +16,11 @@ def githubify(text):
     text = '```console\n' + text + '```\n'    
     r = requests.post('https://api.github.com/markdown/raw', data=text, headers={'Content-Type': 'text/x-markdown'})
     return r.text
+
+
+def escape_ansi(text):
+    ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
+    return ansi_escape.sub('', text)
 
 
 @app.route('/', methods=['GET'])
@@ -57,8 +63,9 @@ def get_status(task_id):
 @app.route('/results/<task_id>', methods=['GET'])
 def result(task_id):
     task = q.fetch_job(task_id)
-    url = task.result.splitlines()[0][9:]
-    return render_template('result.html', results=[{'url': url, 'content': githubify(task.result)}])
+    result = escape_ansi(task.result)
+    url = result.splitlines()[0][9:]
+    return render_template('result.html', results=[{'url': url, 'content': githubify(result)}])
 
 
 
