@@ -1,2 +1,2 @@
-# wpvulscan
-WordPress Vulnerability Scanner
+# wordpress-vulscan
+WordPress vulnerability scanner
